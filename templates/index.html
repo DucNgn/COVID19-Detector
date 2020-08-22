@@ -1,0 +1,265 @@
+  {% include 'header.html' %}
+  <body id="page-top" onload="checkJump()">
+    <!-- Navigation-->
+    <nav
+      class="navbar navbar-expand-lg navbar-light fixed-top py-3"
+      id="mainNav"
+    >
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"
+          >COVID19 Detector</a
+        >
+        <button
+          class="navbar-toggler navbar-toggler-right"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#try">Try now</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#data"
+                >Data we used</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Masthead-->
+    <header class="masthead">
+      <div class="container h-100">
+        <div
+          class="row h-100 align-items-center justify-content-center text-center"
+        >
+          <div class="col-lg-10 align-self-end">
+            <h1 class="text-uppercase text-white font-weight-bold">
+              Detect the risk of having COVID-19 based on CT (Computed
+              tomography) scan image
+            </h1>
+            <hr class="divider my-4" />
+          </div>
+          <div class="col-lg-8 align-self-baseline">
+            <p class="text-white-75 font-weight-light mb-5">
+              A tool that simplifies the process of detecting COVID 19
+            </p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#try"
+              >Try now</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- About-->
+    <section class="page-section" id="try">
+      <div class="container">
+        <div class="col">
+          <div class="row justify-content-center">
+            <!-- Flash messages-->
+            {% with messages = get_flashed_messages(with_categories=true) %} 
+            {% if messages %} 
+            {% for category, message in messages %}
+            <div
+              class="alert alert-{{ category }} alert-dismissible fade show"
+              role="alert"
+            >
+              <span> {{ message }} </span>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+          </div>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+              <h2 class="text-black mt-0">We've got what many need!</h2>
+              <hr class="divider dark my-4" />
+              <p class="text-black-50 mb-4">
+                Upload an image or input an URL to begin
+              </p>
+            </div>
+          </div>
+
+          <div class="row justify-content-center">
+            {% if provided_img %}
+            <img src="{{provided_img}}" style="width: 70%; height: auto;"/>
+            {% else %}
+            <img id="preview" style="width: 70%; height: auto;" src="./static/assets/img/noImgHolder.png" />
+            {% endif %}
+          </div>
+          <div class="row">
+            <div class="col-md-12 bs-linebreak"></div>
+          </div>
+
+          {% if claimer %}
+          <div class="row justify-content-center">
+            <div class="alert alert-success" role="alert">
+              <h4 class="alert-heading">Done!</h4>
+              <p><strong>{{claimer}}</strong></p>
+              <hr />
+              <p class="mb-0">the result might be wrong because blah blah</p>
+            </div>
+          </div>
+          {% endif %}
+          <div class="row">
+            <div class="col-md-12 bs-linebreak"></div>
+          </div>
+
+          <div class="row justify-content-center">
+            <form action="/index" method="POST" enctype="multipart/form-data">
+              <input
+                type="url"
+                class="form-control"
+                name="img-url"
+                placeholder="Enter an image URL"
+              />
+              <center>or</center>
+              <div class="custom-file">
+                <input
+                  type="file"
+                  class="custom-file-input"
+                  name="image"
+                  id="image"
+                  oninput="filesize(this)"
+                />
+                <label class="custom-file-label" for="image"
+                  >Upload your file</label
+                >
+              </div>
+              <small id="submitReq" class="form-text text-muted"
+                >File formats accepted: jpg, png, bmp <br />
+                File size should not exceed: 4mb</small
+              >
+              <div class="row">
+                <div class="col-md-12 bs-linebreak"></div>
+              </div>
+              <center>
+                <button type="submit" class="btn btn-primary" id="submit-btn">
+                  Submit
+                </button>
+              </center>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!--Data we used-->
+    <section class="page-section" id="data">
+      <div class="container">
+        <div class="col">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+              <h2 class="text-white mt-0">About our data</h2>
+              <hr class="divider light my-4" />
+              <p class="text-white-50 mb-4">
+                Start Bootstrap has everything you need to get your new website
+                up and running in no time! Choose one of our open source, free
+                to download, and easy to use themes! No strings attached!
+              </p>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <form action="/presentdata">
+              <button type="submit" class="btn btn-info">
+                See details of our data
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact-->
+    <section class="page-section" id="contact">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h2 class="mt-0">Notice</h2>
+            <hr class="divider my-4" />
+            <p class="text-muted mb-5">This is not official blah blah blah</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+            <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+            <div>+1 (555) 123-4567</div>
+          </div>
+          <div class="col-lg-4 mr-auto text-center">
+            <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+            <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
+            <a class="d-block" href="mailto:contact@yourwebsite.com"
+              >contact@yourwebsite.com</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer-->
+    <footer class="bg-light py-5">
+      <div class="container">
+        <div class="small text-center text-muted">Copyright © 2020</div>
+      </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="./static/js/scripts.js"></script>
+    <script>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          document.getElementById("try").scrollIntoView();
+        {% endif %} {% endwith %}
+
+      function checkJump() {
+        if ("{{isReturn}}" == "true") {
+          document.getElementById("try").scrollIntoView();
+        }
+      }
+
+      function filesize(elem) {
+        document.cookie = `filesize=${elem.files[0].size}`;
+      }
+
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $("#preview").attr("src", e.target.result);
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+
+      $("#image").on("change", function () {
+        var fileName = $(this).val().replace(/\\/g, "/").replace(/.*\//, "");
+        $(this).next(".custom-file-label").html(fileName);
+        readURL(this);
+      });
+    </script>
+  </body>
+</html>
