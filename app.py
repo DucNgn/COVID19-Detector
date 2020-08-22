@@ -33,7 +33,7 @@ def not_found(e):
 
 @app.route("/")
 def index():
-    return render_template("index.html", predictionDisplay="hidden")
+    return render_template("index.html")
 
 
 @app.route("/index", methods=["GET", "POST"])
@@ -42,7 +42,7 @@ def upload_image():
         inputURL = request.form['img-url']
         # Regex to check if it's a valid image url
         checkLink = re.search(
-            "(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)", inputURL)
+            "(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png|jpeg|bmp)", inputURL)
         if checkLink is None:
             flash("Invalid Image URL", "warning")
             return redirect(request.url)
@@ -95,7 +95,7 @@ def upload_image():
                     if result is None:
                         flash(
                             "Could not detect a chest CT scan"
-                            + "in the provided image",
+                            + " in the provided image",
                             "info")
                         clean_Tempdir(tempLoc, filename)
                         return redirect(request.url)
