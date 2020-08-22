@@ -1,0 +1,7 @@
+test_data
+Pipfile
+.gitignore
+upload_train.py
+README.md
+credentials_example.json
+data/CT_NonCOVID
