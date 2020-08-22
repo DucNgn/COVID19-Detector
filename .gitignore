@@ -1,0 +1,6 @@
+*.DS_Store
+*.vscode
+*.pytest_cache
+__pycache__
+*temp
+credentials.json
