@@ -6,7 +6,7 @@ os.environ['PORT'] = '5000'
 
 @app.route("/")
 def index():
-    return "<h1>Hello Azure!</h1>"
+    return "<h1>Hello Azure!</h1><h3>This is a new change</h3>"
 
 if __name__ == '__main__':
     secret_key = secrets.token_hex(16)
