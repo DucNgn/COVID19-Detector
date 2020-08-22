@@ -39,10 +39,9 @@ def getResult(data):
     probs = dict()
     probs[data['predictions'][0]['tagName']] = data['predictions'][0]['probability']
     probs[data['predictions'][1]['tagName']] = data['predictions'][1]['probability']
-    # discard unrelevant input
+    # discard irrelevant input
     if probs['Positive'] <= 0.5 and probs['Negative'] <= 0.5:
         return (None, probs)
     # legit result
     return (True, probs) if (probs['Positive'] > probs['Negative']) else (False, probs)
 
-print(getPredictionByURL("https://upload.wikimedia.org/wikipedia/commons/d/dc/Alpha_1-antitrypsine_deficiency_lung_CT_scan.JPEG"))
