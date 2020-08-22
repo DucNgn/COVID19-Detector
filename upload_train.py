@@ -15,7 +15,7 @@ ap.add_argument("-o", "--noncovid", required=True,
                 help="path to base directory for normal people dataset")
 args = vars(ap.parse_args())
 
-with open("credentials") as json_file:
+with open("credentials.json") as json_file:
     data = json.load(json_file)
     os.environ['resource_endpoint'] = data['resource_endpoint']
     os.environ['training_key'] = data['training_key']
