@@ -88,7 +88,7 @@
 
           <div class="row justify-content-center">
             {% if provided_img %}
-            <img src="{{provided_img}}" style="width: 70%; height: auto;"/>
+            <img id="preview" src="{{provided_img}}" style="width: 70%; height: auto;"/>
             {% else %}
             <img id="preview" style="width: 70%; height: auto;" src="./static/assets/img/noImgHolder.png" />
             {% endif %}
