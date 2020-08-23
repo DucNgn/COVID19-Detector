@@ -27,11 +27,11 @@
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#data"
-                >Data we used</a
+                >Training data</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="#repo">GitHub Repo</a>
             </li>
           </ul>
         </div>
@@ -45,18 +45,26 @@
         >
           <div class="col-lg-10 align-self-end">
             <h1 class="text-uppercase text-white font-weight-bold">
-              Detect the risk of having COVID-19 quickly 
+              Detect the risk of having COVID-19
             </h1>
+            <h4 class="text-white font-weight-bold">
+              using Chest CT Scan Images
+            </h4>
             <hr class="divider my-4" />
           </div>
           <div class="col-lg-8 align-self-baseline">
             <p class="text-white-75 font-weight-light mb-5">
-            In these trying times, COVID-19 testing kits supplied by governments are in shortage around the globe. 
-            With that in mind, we provide a solution for this rising problem. 
-            Our COVID19 detector tool gives tentative prediction on the probability of a patient contracting Covid-19 based on CT scan image in seconds.
-            The tool aids our health care providers in many testing sites.
-            This is a tool that detects COVID 19 risk of a patient based on CT (Computed Tomography) scan images with a precision of 91%.
-            </p>
+            Testings are essential to detect and containerize COVID-19 pandemic.
+            However, the need for testing is excessive and the equipment is in shortage around the world.
+            Understand the situation, we provide a solution for this rising issue.
+            <br>
+            <br>
+            COVID-19 detector tentatively predicts the probability of an infected patient based on Chest CT scan images 
+            (Computed Tomography scan technology is a popular service at most hospitals).
+            We aim to use this project to detect people with high potential of having COVID-19. 
+            Thus, health care providers can approach, test, and deliver supports to these patients faster.
+            The detector has a high precision rate at 91% and gives prediction in only seconds.
+          </p>
             <a class="btn btn-primary btn-xl js-scroll-trigger" href="#try"
               >Try now</a
             >
@@ -69,35 +77,12 @@
     <section class="page-section" id="try">
       <div class="container">
         <div class="col">
-          <div class="row justify-content-center">
-            <!-- Flash messages-->
-            {% with messages = get_flashed_messages(with_categories=true) %} 
-            {% if messages %} 
-            {% for category, message in messages %}
-            <div
-              class="alert alert-{{ category }} alert-dismissible fade show"
-              role="alert"
-            >
-              <span> {{ message }} </span>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            {% endfor %} {% endif %} {% endwith %}
-          </div>
+       
 
           <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-              <h2 class="text-black mt-0">We've got what many need!</h2>
+              <h2 class="text-black mt-0">Input an image URL or upload an image</h2>
               <hr class="divider dark my-4" />
-              <p class="text-black-50 mb-4">
-                Upload an image or input an URL to begin
-              </p>
             </div>
           </div>
 
@@ -112,14 +97,35 @@
             <div class="col-md-12 bs-linebreak"></div>
           </div>
 
+          <!-- Flash messages-->
+          {% with messages = get_flashed_messages(with_categories=true) %} 
+          {% if messages %} 
+          <div class="row justify-content-center">
+          {% for category, message in messages %}
+          <div
+            class="alert alert-{{ category }} alert-dismissible fade show"
+            role="alert"
+          >
+            <span> {{ message }} </span>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endfor %} {% endif %} </div>{% endwith %}
+
           {% if claimer %}
           <div class="row justify-content-center">
-            <div class="alert alert-success" role="alert">
-              <h4 class="alert-heading">Done!</h4>
-              <p><strong>{{claimer}}</strong></p>
-              <hr />
-              <p class="mb-0">the result might be wrong because blah blah</p>
+            <div class="alert alert-{{alert}}" role="alert">
+              <h4 class="alert-heading">{{claimer}}</h4>
             </div>
+          </div>
+          <div class="row justify-content-center">
+            <p class="form-text text-muted" style="font-size:x-small;">* The result might not be accurate because of the image quality</p>
           </div>
           {% endif %}
           <div class="row">
@@ -132,7 +138,7 @@
                 type="url"
                 class="form-control"
                 name="img-url"
-                placeholder="Enter an image URL"
+                placeholder="Input an image URL"
               />
               <center>or</center>
               <div class="custom-file">
@@ -144,13 +150,12 @@
                   oninput="filesize(this)"
                 />
                 <label class="custom-file-label" for="image"
-                  >Upload your file</label
+                  >Upload image</label
                 >
               </div>
-              <small id="submitReq" class="form-text text-muted"
-                >File formats accepted: jpg, png, bmp <br />
-                File size should not exceed: 4mb</small
-              >
+              <p id="submitReq" class="form-text text-muted" style="font-size:x-small;">
+                File formats accepted: jpg, jpeg, png, bmp <br />
+                File size should not exceed: 4mb</p>
               <div class="row">
                 <div class="col-md-12 bs-linebreak"></div>
               </div>
@@ -174,17 +179,17 @@
             <div class="col-lg-8 text-center">
               <h2 class="text-white mt-0">About our data</h2>
               <hr class="divider light my-4" />
-              <p class="text-white-50 mb-4">
-                Start Bootstrap has everything you need to get your new website
-                up and running in no time! Choose one of our open source, free
-                to download, and easy to use themes! No strings attached!
+              <p class="text-white mb-4">
+                The training data consists of chest CT scan images of 329 positive COVID-19 patients
+                and 387 negative cases. With this data set, we were able to train an AI model that
+                capable of labelling tags with high performance (the precision rate at 91%, recall rate at 85.6%).
               </p>
             </div>
           </div>
           <div class="row justify-content-center">
             <form action="/presentdata">
-              <button type="submit" class="btn btn-info">
-                See details of our data
+              <button type="submit" class="btn btn-primary">
+                View details
               </button>
             </form>
           </div>
@@ -193,37 +198,23 @@
     </section>
 
     <!-- Contact-->
-    <section class="page-section" id="contact">
+    <section class="page-section" id="repo">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-8 text-center">
             <h2 class="mt-0">Notice</h2>
             <hr class="divider my-4" />
-            <p class="text-muted mb-5">This is not official blah blah blah</p>
+            <p class="text-muted mb-5">This is an unofficial tool that is not authorized to be used in any practical context.</p>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-            <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-            <div>+1 (555) 123-4567</div>
-          </div>
-          <div class="col-lg-4 mr-auto text-center">
-            <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-            <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-            <a class="d-block" href="mailto:contact@yourwebsite.com"
-              >contact@yourwebsite.com</a
-            >
-          </div>
+        <div class="row justify-content-center">
+            <button class="btn btn-primary" onclick="openGitHub()">GitHub Repository</button>
         </div>
       </div>
     </section>
 
-    <!-- Footer-->
-    <footer class="bg-light py-5">
-      <div class="container">
-        <div class="small text-center text-muted">Copyright © 2020</div>
-      </div>
-    </footer>
+    {%include 'footer.html'%}
+
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
@@ -263,6 +254,13 @@
         $(this).next(".custom-file-label").html(fileName);
         readURL(this);
       });
+
+      function openGitHub() {
+        window.open(
+           'https://github.com/DukeNgn/COVID19-detector-by-CT-scan',
+            '_blank' 
+        );
+      }
     </script>
   </body>
 </html>

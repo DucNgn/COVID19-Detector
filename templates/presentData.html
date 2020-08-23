@@ -27,8 +27,12 @@
                     <hr class="divider my-4" />
                 </div>
                 <div class="col-lg-8 align-self-baseline">`
-                    <p class="text-white font-weight-light mb-5">Below is the table of all the data that we
-                        used to train the model</p>
+                    <p class="text-white font-weight-light mb-5">
+                    <br>The data set we used is extensively informative. However, our machine learning model is only trained by images without taking into account other external factors for simplicity purpose.</br>
+                    <br>The data set was retrieved from <a href="https://github.com/UCSD-AI4H/COVID-CT" target="_blank">UCSD-AI4H</a>.</br>
+                    <br>Below is the table of all the data that we used to train the model. </br>
+                    </p>
+
                     <form action="/index">
                         <center><button type="submit" class="btn btn-primary">Go back to main page</button></center>
                     </form>
@@ -87,9 +91,4 @@ https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     </script>
 </body>
 
-<!-- Footer-->
-<footer class="bg-light py-5">
-    <div class="container">
-        <div class="small text-center text-muted">Copyright © 2020</div>
-    </div>
-</footer>
+{%include 'footer.html'%}
