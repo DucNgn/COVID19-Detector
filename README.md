@@ -1,5 +1,7 @@
 # COVID-19 Detector
+
 [![Build Status](https://dev.azure.com/minhnhattran/Covid19CTscan/_apis/build/status/COVID19-detector%20-%20CI?branchName=master)](https://dev.azure.com/minhnhattran/Covid19CTscan/_build/latest?definitionId=1&branchName=master)
+
 COVID-19 detector is a website that uses machine learning to give tentative predictions about an user's probability of contracting COVID-19 by looking at their chest CT-scan.
 
 ## How Our Project Aids Health Care Providers
@@ -22,8 +24,9 @@ Our machine learning model:
 1. Clone our repository
 2. (Optional) Create a virtual python environment
 3. Run ```pip install -r requirements.txt``` inside the project root directory
-3. Run ```flask run```
-4. The website should be up and running at `localhost:5000`
+4. Set up your Azure Custom Vision project and create a `credentials.json` file similar to our `credentials_example.json` file.
+5. Run ```flask run```
+6. The website should be up and running at `localhost:5000`
 
 ## Credits:
 + Data set from [COVID-CT](https://github.com/UCSD-AI4H/COVID-CT)
