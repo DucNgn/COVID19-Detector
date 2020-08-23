@@ -55,12 +55,14 @@ def upload_image():
             return redirect(request.url)
         else:
             if result is True:
+                alert = "danger"
                 claimer = "Positive with COVID-19 with precision of: " + \
                     "{0:.2f}%".format(probs['Positive'] * 100)
             else:
+                alert = "success"
                 claimer = "Negative with COVID-19 with precision of: " + \
                     "{0:.2f}%".format(probs['Negative'] * 100)
-            return render_template("index.html", claimer=claimer, provided_img=inputURL, isReturn="true")
+            return render_template("index.html", claimer=claimer, alert=alert, provided_img=inputURL, isReturn="true")
 
     # Upload file from local for prediction
     tempLoc = str(os.environ.get('IMAGE_UPLOAD'))
@@ -84,7 +86,7 @@ def upload_image():
 
                 if not image_is_allowed(image.filename):
                     # Check extension of the file
-                    flash("File extension is not allowed", "warning")
+                    flash("File format is not accepted", "warning")
                     return redirect(request.url)
                 else:
                     filename = secure_filename(image.filename)
@@ -103,12 +105,14 @@ def upload_image():
                         tempImgPath = generateImgPath(tempLoc, filename)
                         os.rename(imgPath, tempImgPath)
                         if result is True:
+                            alert = "danger"
                             claimer = "Positive with COVID-19 with precision of: " + \
                                 "{0:.2f}%".format(probs['Positive'] * 100)
                         else:
+                            alert = "success"
                             claimer = "Negative with COVID-19 with precision of: " + \
                                 "{0:.2f}%".format(probs['Negative'] * 100)
-                        return render_template("index.html", claimer=claimer, provided_img=tempImgPath, isReturn = "true")
+                        return render_template("index.html", claimer=claimer, alert=alert, provided_img=tempImgPath, isReturn = "true")
     return render_template("index.html")
 
 
