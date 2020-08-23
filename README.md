@@ -1,6 +1,7 @@
 # COVID-19 Detector
 
-![Project Logo](./front_page.png)
+![front_page](./front_page.png)
+![user_input](./user_input.png)
 
 COVID-19 detector is a website that uses machine learning to give tentative predictions about an user's probability of contracting COVID-19 by looking at their chest CT-scan.
 
