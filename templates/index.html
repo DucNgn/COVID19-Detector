@@ -90,7 +90,7 @@
             {% if provided_img %}
             <img id="preview" src="{{provided_img}}" style="width: 70%; height: auto;"/>
             {% else %}
-            <img id="preview" style="width: 70%; height: auto;" src="./static/assets/img/noImgHolder.png" />
+            <img id="preview" style="width: 70%; height: auto; object-fit: cover; max-width:100%;" src="./static/assets/img/noImgHolder.png" />
             {% endif %}
           </div>
           <div class="row">
