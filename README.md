@@ -1,7 +1,5 @@
 # COVID-19 Detector
 
-[![Build Status](https://dev.azure.com/minhnhattran/Covid19CTscan/_apis/build/status/COVID19-detector%20-%20CI?branchName=master)](https://dev.azure.com/minhnhattran/Covid19CTscan/_build/latest?definitionId=1&branchName=master)
-
 COVID-19 detector is a website that uses machine learning to give tentative predictions about an user's probability of contracting COVID-19 by looking at their chest CT-scan.
 
 ## How Our Project Aids Health Care Providers
