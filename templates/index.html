@@ -89,9 +89,9 @@
           <!--Preview Image-->
           <div class="row justify-content-center">
             {% if provided_img %}
-            <img id="preview" class="img-fluid" src="{{provided_img}}">
+            <img src="{{provided_img}}" id="preview" class="img-fluid">
             {% else %}
-            <img id="preview" class="img-fluid" src="./static/assets/img/noImgHolder.png" />
+            <img src="./static/assets/img/noImgHolder.png" id="preview" class="img-fluid" >
             {% endif %}
           </div>
           <div class="row">
