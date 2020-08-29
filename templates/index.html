@@ -88,11 +88,13 @@
 
           <!--Preview Image-->
           <div class="row justify-content-center">
+            <div class="card d-block">
             {% if provided_img %}
-            <img src="{{provided_img}}" id="preview" class="img-fluid" style="display:block;">
+            <img src="{{provided_img}}" id="preview" class="img-fluid">
             {% else %}
-            <img src="./static/assets/img/noImgHolder.png" id="preview" class="img-fluid" style="display: block;">
+            <img src="./static/assets/img/noImgHolder.png" id="preview" class="img-fluid">
             {% endif %}
+            </div>
           </div>
           <div class="row">
             <div class="col-md-12 bs-linebreak"></div>
