@@ -154,4 +154,4 @@ if __name__ == '__main__':
     secret_key = secrets.token_hex(16)
     app.config['SECRET_KEY'] = secret_key
     port = int(os.environ['PORT'])
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=False, host='0.0.0.0', port=port)

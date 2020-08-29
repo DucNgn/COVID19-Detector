@@ -1,5 +1,6 @@
 test_data
 Pipfile
+Pipfile.lock
 .gitignore
 .vscode
 upload_train.py
